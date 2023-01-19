@@ -9,4 +9,4 @@ List of Diseases-
 6. Alzheimer- check
 7. Tubercolosis- check
 8. Pnemonia, Covid-19, Tubercolosis- check
-Mental Health
+9. Mental Health - Unchecked
