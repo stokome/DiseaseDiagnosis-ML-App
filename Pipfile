@@ -12,6 +12,7 @@ scikit-learn = "*"
 mlxtend = "*"
 streamlit = "*"
 streamlit-option-menu = "*"
+tensorflow = "*"
 
 [dev-packages]
 
