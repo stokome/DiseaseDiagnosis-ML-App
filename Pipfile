@@ -13,6 +13,7 @@ mlxtend = "*"
 streamlit = "*"
 streamlit-option-menu = "*"
 tensorflow = "*"
+pillow = "*"
 
 [dev-packages]
 
