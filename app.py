@@ -7,6 +7,7 @@ from PIL import Image
 
 diabetes_model = pickle.load(open('./saved_models/diabetes_model.sav', 'rb'))
 covid_model = pickle.load(open('saved_models\covid_model.sav', 'rb'))
+cvd_model = tf.keras.models.load_model('saved_models\cvd_model.h5')
 
 
 with st.sidebar:
@@ -20,7 +21,7 @@ with st.sidebar:
     'activity', 
     'activity', 
     'activity'], 
-    default_index = 1)
+    default_index = 0)
 
 if menu == 'Diabetes':
 
@@ -29,13 +30,18 @@ if menu == 'Diabetes':
     st.markdown("Diabetes is a chronic (long-lasting) health condition that affects how your body turns food into energy. Your body breaks down most of the food you eat into sugar (glucose) and releases it into your bloodstream. When your blood sugar goes up, it signals your pancreas to release insulin. Insulin acts like a key to let the blood sugar into your body’s cells for use as energy.With diabetes, your body doesn’t make enough insulin or can’t use it as well as it should. When there isn’t enough insulin or cells stop responding to insulin, too much blood sugar stays in your bloodstream. Over time, that can cause serious health problems, such as heart disease, vision loss, and kidney disease.")
     st.subheader("Symptoms")
     st.markdown("If you have any of the following diabetes symptoms, see your doctor about getting your blood sugar tested:")
-    st.markdown("-Urinate (pee) a lot, often at night")
-    st.markdown("-Are very thirsty")
-    st.markdown("-Lose weight without trying")
-    st.markdown("-Are very Hungary")
-    st.markdown("-Have blurry vivion")
-    st.markdown("-Feel very Tired")
-    st.header("Test for Diabetes")
+    col1, col2 = st.columns(2)
+    with col1:
+        st.markdown("-Urinate (pee) a lot, often at night")
+        st.markdown("-Are very thirsty")
+        st.markdown("-Lose weight without trying")
+        st.markdown("-Are very Hungary")
+        st.markdown("-Have blurry vivion")
+        st.markdown("-Feel very Tired")
+        st.header("Test for Diabetes")
+    with col2:
+        dia_img = Image.open('images\diabetes.webp')
+        st.image(dia_img, width = 250)
     
     col1, col2, col3 = st.columns(3)
 
@@ -128,11 +134,76 @@ elif menu == "Covid-19":
             covid_res = 'Congrats, you are Covid-Negative.'
             st.success(covid_res)
 
+elif menu == "Heart":
 
+    st.title("Cardiovascular Disease")
+    st.header("What is Cardiovascular Disease?")
+    col1, col2 = st.columns(2)
+    with col1:
+        st.markdown("Cardiovascular diseases (CVDs) are a group of disorders of the heart and blood vessels. They include:")
+        st.markdown("1. Coronary heart disease: a disease of the blood vessels supplying the heart muscle")
+        st.markdown("2. Cerebrovascular disease: a disease of the blood vessels supplying the brain")
+        st.markdown("3. Peripheral arterial disease: a disease of blood vessels supplying the arms and legs")
+        st.markdown("4. Congenital heart disease: birth defects that affect the normal development and functioning of the heart caused by malformations of the heart structure from birth")
+        st.markdown("5. Deep vein thrombosis and pulmonary embolism: blood clots in the leg veins, which can dislodge and move to the heart and lungs")
+
+    with col2:
+        cvd_image = Image.open('images\cvd.png')
+        st.image(cvd_image, width = 500)
+
+    st.subheader("Symptoms: ")
+    st.markdown("Heart disease describes a range of conditions that affect the heart. Heart diseases include:")
+    st.markdown("- Blood vessel disease, such as coronary artery disease")
+    st.markdown("- Irregular heartbeats (arrhythmias)")
+    st.markdown("- Heart problems you're born with (congenital heart defects)")
+    st.markdown("- Disease of the heart muscle")
+    st.markdown("- Heart valve disease")
+    st.header("Test for CVDs:")
+
+    col1, col2 = st.columns(2)
+    dict = {"Yes": 1, "No": 0, "Male": 1, "Female": 0}
+    with col1:
+        age = st.slider("Age:", min_value = 0, max_value = 100, value = 50, step = 1)
+        ap_high = st.slider("Systolic BP:", min_value = 40, max_value = 300, value = 120, step = 1)
+        gender = st.radio("Sex:", ("Male", "Female"))
+        drink = st.radio("Do you consume alcohol?", ("Yes", "No"))
+        chol = st.radio("What is your cholesterol level:", ("High", "Low", "Normal"))
+
+    with col2:
+        bmi = st.slider("BMI:", min_value = 10.0, max_value = 100.0, value = 20.0, step = 0.1)
+        ap_low = st.slider("Distolic BP:", min_value = 40, max_value = 300, value = 80, step = 1)
+        smoke = st.radio("Do you Smoke?:", ("Yes", "No"))
+        active = st.radio("Are you physically active:", ("Yes", "No"))
+        gluc = st.radio("What is your glucose level:", ("High", "Low", "Normal"))
+
+    if st.button("Check Result"):
+        chol_nor, chol_abv, gluc_nor, gluc_abv = None, None, None, None
+        if chol == "High":
+            chol_nor = 0
+            chol_abv = 1
+        elif chol == "Low":
+            chol_nor = 0
+            chol_abv = 0
+        else:
+            chol_nor = 1
+            chol_abv = 0
+
+        if gluc == "High":
+            gluc_nor = 0
+            gluc_abv = 1
+        elif gluc == "Low":
+            gluc_nor = 0
+            gluc_abv = 0
+        else:
+            gluc_nor = 1
+            gluc_abv = 0
+
+        inputs = [[age, dict[gender], ap_high, ap_low, dict[smoke], dict[drink], dict[active], bmi, chol_nor, gluc_nor, chol_abv, gluc_abv]]
         
-
+        prediction = cvd_model.predict(inputs)
+        if prediction > 0.98:
+            st.error("Alert, You might have Cardiovascular Disease")
+        else:
+            st.success("Congrats,  You do not have Cardiovascular Disease")
     
-    
 
-
-        
