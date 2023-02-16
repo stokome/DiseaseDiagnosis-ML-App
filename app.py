@@ -5,7 +5,10 @@ from streamlit_option_menu import option_menu
 import tensorflow as tf
 from PIL import Image
 
-diabetes_model = pickle.load(open('./saved_models/diabetes_model.sav', 'rb'))
+
+st.title("This is Home Page")
+
+'''diabetes_model = pickle.load(open('./saved_models/diabetes_model.sav', 'rb'))
 covid_model = pickle.load(open('saved_models\covid_model.sav', 'rb'))
 cvd_model = tf.keras.models.load_model('saved_models\cvd_model.h5')
 lung_model = pickle.load(open('saved_models\lung_cancer.sav', 'rb'))
@@ -309,7 +312,7 @@ elif menu == "Alzheimer":
                     st.info(dementia_dict[i])
             
         else:
-            st.error("Please upload image")
+            st.error("Please upload image")'''
 
 
 
