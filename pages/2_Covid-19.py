@@ -5,14 +5,14 @@ from streamlit_option_menu import option_menu
 import tensorflow as tf
 from PIL import Image
 
-covid_model = pickle.load(open('./saved_models\covid_model.sav', 'rb'))
+covid_model = pickle.load(open('./saved_models/covid_model.sav', 'rb'))
 st.title("Covid-19")
-covid_img = Image.open("./images\covid.jpg")
+covid_img = Image.open("./images/covid.jpg")
 st.image(covid_img, caption = 'covid-19 virus', width = 500)
 st.header("What is covid-19?")
 st.markdown("Coronavirus disease 2019 (COVID-19) is a contagious disease caused by a virus, the severe acute respiratory syndrome coronavirus 2 (SARS-CoV-2). The first known case was identified in Wuhan, China, in December 2019.[5] The disease quickly spread worldwide, resulting in the COVID-19 pandemic.")
 st.subheader("Pandemic Statistics")
-covid_stat_img = Image.open("./images\covid-stat.png")
+covid_stat_img = Image.open("./images/covid-stat.png")
 st.image(covid_stat_img, width = 700)
 st.subheader("Symptoms of Covid-19-")
 col1, col2 = st.columns(2)
