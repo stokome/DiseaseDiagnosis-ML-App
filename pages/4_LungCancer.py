@@ -5,11 +5,11 @@ from streamlit_option_menu import option_menu
 import tensorflow as tf
 from PIL import Image
 
-lung_model = pickle.load(open('saved_models\lung_cancer.sav', 'rb'))
-lung_cancer_scaler = pickle.load(open('saved_models\scaler_lung_cancer.pkl', 'rb'))
+lung_model = pickle.load(open('./saved_models\lung_cancer.sav', 'rb'))
+lung_cancer_scaler = pickle.load(open('./saved_models\scaler_lung_cancer.pkl', 'rb'))
 
 st.title("Lung Cancer")
-lung_cancer_img = Image.open("images\lung_cancer.jfif")
+lung_cancer_img = Image.open("./images\lung_cancer.jfif")
 st.image(lung_cancer_img)
 st.header("What is Lung Cancer?")
 st.markdown("Cancer is a disease in which cells in the body grow out of control. When cancer starts in the lungs, it is called Lung Cancer. Lung cancer begins in the lungs and may spread to lymph nodes or other organs in the body, such as the brain. Cancer from other organs also may spread to the lungs. When cancer cells spread from one organ to another, they are called metastases.")

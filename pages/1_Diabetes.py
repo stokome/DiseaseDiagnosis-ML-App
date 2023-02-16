@@ -21,7 +21,7 @@ with col1:
     st.markdown("-Feel very Tired")
     st.header("Test for Diabetes")
 with col2:
-    dia_img = Image.open('images\diabetes.webp')
+    dia_img = Image.open('./images/diabetes.webp')
     st.image(dia_img, width = 250)
 
 col1, col2, col3 = st.columns(3)

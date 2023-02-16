@@ -5,7 +5,7 @@ from streamlit_option_menu import option_menu
 import tensorflow as tf
 from PIL import Image
 
-cvd_model = tf.keras.models.load_model('saved_models\cvd_model.h5')
+cvd_model = tf.keras.models.load_model('./saved_models\cvd_model.h5')
 
 st.title("Cardiovascular Disease")
 st.header("What is Cardiovascular Disease?")
@@ -19,7 +19,7 @@ with col1:
     st.markdown("5. Deep vein thrombosis and pulmonary embolism: blood clots in the leg veins, which can dislodge and move to the heart and lungs")
 
 with col2:
-    cvd_image = Image.open('images\cvd.png')
+    cvd_image = Image.open('./images\cvd.png')
     st.image(cvd_image, width = 500)
 
 st.subheader("Symptoms: ")
