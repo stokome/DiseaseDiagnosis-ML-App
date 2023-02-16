@@ -11,7 +11,7 @@ Clone this repository to your local machine.
 Install Python 3.x if it is not already installed.
 Install the required packages by running pip install -r requirements.txt in your terminal.
 Run python Home.py in your terminal to start the app.
-#### Usage
+### Usage
 When the app is launched, visit the desired diseases and then user will be prompted to provide information about their health history, symptoms, and lifestyle habits. The app then uses machine learning algorithms to analyze this information and predict potential health concerns.
 
 ### Contributing
