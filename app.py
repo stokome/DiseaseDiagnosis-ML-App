@@ -20,14 +20,12 @@ with st.sidebar:
     menu =  option_menu('Diagnosis', ['Diabetes', 
     'Covid-19', 
     'Heart', 
-    "Lung Cancer", 
-    'Alzheimer'], 
+    "Lung Cancer"], 
     icons = ['activity', 
     'activity', 
     'activity', 
-    'activity', 
     'activity'], 
-    default_index = 4)
+    default_index = 3)
 
 if menu == 'Diabetes':
 
